@@ -11,7 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as publicLayoutRouteImport } from './routes/(public)/layout'
 import { Route as publicIndexRouteImport } from './routes/(public)/index'
-import { Route as publicAuthLoginRouteImport } from './routes/(public)/auth/login'
+import { Route as publicAlgoritmosAlgortimosBasicosRouteImport } from './routes/(public)/algoritmos/algortimos-basicos'
+import { Route as publicAlgoritmosAlgoritmosGeneticosRouteImport } from './routes/(public)/algoritmos/algoritmos-geneticos'
 
 const publicLayoutRoute = publicLayoutRouteImport.update({
   id: '/(public)',
@@ -22,32 +23,53 @@ const publicIndexRoute = publicIndexRouteImport.update({
   path: '/',
   getParentRoute: () => publicLayoutRoute,
 } as any)
-const publicAuthLoginRoute = publicAuthLoginRouteImport.update({
-  id: '/auth/login',
-  path: '/auth/login',
-  getParentRoute: () => publicLayoutRoute,
-} as any)
+const publicAlgoritmosAlgortimosBasicosRoute =
+  publicAlgoritmosAlgortimosBasicosRouteImport.update({
+    id: '/algoritmos/algortimos-basicos',
+    path: '/algoritmos/algortimos-basicos',
+    getParentRoute: () => publicLayoutRoute,
+  } as any)
+const publicAlgoritmosAlgoritmosGeneticosRoute =
+  publicAlgoritmosAlgoritmosGeneticosRouteImport.update({
+    id: '/algoritmos/algoritmos-geneticos',
+    path: '/algoritmos/algoritmos-geneticos',
+    getParentRoute: () => publicLayoutRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof publicIndexRoute
-  '/auth/login': typeof publicAuthLoginRoute
+  '/algoritmos/algoritmos-geneticos': typeof publicAlgoritmosAlgoritmosGeneticosRoute
+  '/algoritmos/algortimos-basicos': typeof publicAlgoritmosAlgortimosBasicosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof publicIndexRoute
-  '/auth/login': typeof publicAuthLoginRoute
+  '/algoritmos/algoritmos-geneticos': typeof publicAlgoritmosAlgoritmosGeneticosRoute
+  '/algoritmos/algortimos-basicos': typeof publicAlgoritmosAlgortimosBasicosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/(public)': typeof publicLayoutRouteWithChildren
   '/(public)/': typeof publicIndexRoute
-  '/(public)/auth/login': typeof publicAuthLoginRoute
+  '/(public)/algoritmos/algoritmos-geneticos': typeof publicAlgoritmosAlgoritmosGeneticosRoute
+  '/(public)/algoritmos/algortimos-basicos': typeof publicAlgoritmosAlgortimosBasicosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth/login'
+  fullPaths:
+    | '/'
+    | '/algoritmos/algoritmos-geneticos'
+    | '/algoritmos/algortimos-basicos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth/login'
-  id: '__root__' | '/(public)' | '/(public)/' | '/(public)/auth/login'
+  to:
+    | '/'
+    | '/algoritmos/algoritmos-geneticos'
+    | '/algoritmos/algortimos-basicos'
+  id:
+    | '__root__'
+    | '/(public)'
+    | '/(public)/'
+    | '/(public)/algoritmos/algoritmos-geneticos'
+    | '/(public)/algoritmos/algortimos-basicos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -70,11 +92,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof publicIndexRouteImport
       parentRoute: typeof publicLayoutRoute
     }
-    '/(public)/auth/login': {
-      id: '/(public)/auth/login'
-      path: '/auth/login'
-      fullPath: '/auth/login'
-      preLoaderRoute: typeof publicAuthLoginRouteImport
+    '/(public)/algoritmos/algortimos-basicos': {
+      id: '/(public)/algoritmos/algortimos-basicos'
+      path: '/algoritmos/algortimos-basicos'
+      fullPath: '/algoritmos/algortimos-basicos'
+      preLoaderRoute: typeof publicAlgoritmosAlgortimosBasicosRouteImport
+      parentRoute: typeof publicLayoutRoute
+    }
+    '/(public)/algoritmos/algoritmos-geneticos': {
+      id: '/(public)/algoritmos/algoritmos-geneticos'
+      path: '/algoritmos/algoritmos-geneticos'
+      fullPath: '/algoritmos/algoritmos-geneticos'
+      preLoaderRoute: typeof publicAlgoritmosAlgoritmosGeneticosRouteImport
       parentRoute: typeof publicLayoutRoute
     }
   }
@@ -82,12 +111,16 @@ declare module '@tanstack/react-router' {
 
 interface publicLayoutRouteChildren {
   publicIndexRoute: typeof publicIndexRoute
-  publicAuthLoginRoute: typeof publicAuthLoginRoute
+  publicAlgoritmosAlgoritmosGeneticosRoute: typeof publicAlgoritmosAlgoritmosGeneticosRoute
+  publicAlgoritmosAlgortimosBasicosRoute: typeof publicAlgoritmosAlgortimosBasicosRoute
 }
 
 const publicLayoutRouteChildren: publicLayoutRouteChildren = {
   publicIndexRoute: publicIndexRoute,
-  publicAuthLoginRoute: publicAuthLoginRoute,
+  publicAlgoritmosAlgoritmosGeneticosRoute:
+    publicAlgoritmosAlgoritmosGeneticosRoute,
+  publicAlgoritmosAlgortimosBasicosRoute:
+    publicAlgoritmosAlgortimosBasicosRoute,
 }
 
 const publicLayoutRouteWithChildren = publicLayoutRoute._addFileChildren(
