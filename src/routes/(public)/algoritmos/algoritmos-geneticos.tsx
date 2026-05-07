@@ -30,7 +30,7 @@ function RouteComponent() {
       <motion.div>
         <Card>
           <CardHeader>
-            <Button onClick={navigateToHome} className='w-fit mb-4'><ChevronLeft/> Voltar</Button>
+            <Button onClick={navigateToHome} className='w-fit mb-4 flex justify-center items-center'><ChevronLeft/> Voltar</Button>
             <motion.div
               animate={{ y: [0, -5, 0] }}
               transition={{
