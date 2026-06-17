@@ -69,7 +69,7 @@ function avaliar(s: number[], demandas: Demanda[], capacidade: number): number {
 }
 
 // Sucessor estocástico (usado na Têmpera Simulada e Encosta c/ Tentativas)
-function sucessorAleatorio(s: number[], demandas: Demanda[], capacidade: number): number[] {
+function sucessorAleatorio(s: number[], _demandas: Demanda[], _capacidade: number): number[] {
     const incluidas = s.map((v, i) => (v === 1 ? i : -1)).filter((v) => v >= 0);
     const excluidas = s.map((v, i) => (v === 0 ? i : -1)).filter((v) => v >= 0);
     const novo = [...s];
